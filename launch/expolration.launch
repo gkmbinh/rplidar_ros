@@ -1,0 +1,19 @@
+<!--
+    2016.02.05
+    Alyson (Ying-Hua) Chen
+ -->
+<launch>
+    	  <!-- Open laser node-->
+            <include file="$(find rplidar_ros)/launch/rplidar.launch" />
+        <!-- Open hectormapping node-->
+             <include file="$(find rplidar_ros)/launch/hectormapping.launch" />
+         <!-- Open hector_costmap  launch-->
+             <include file="$(find hector_costmap)/launch/costmap.launch" />
+          <!-- Open hector_exploration_node launch-->
+              <include file="$(find hector_exploration_node)/launch/exploration_planner.launch" />
+         <!-- Open hector_pose_estimation node-->
+         <node name="pose_estimation"     pkg="hector_pose_estimation" type="hector_pose_estimation" output="screen" />
+
+         <!-- Open rviz-->
+            <node name="rviz" pkg="rviz" type="rviz" args="-d $(find fake_laser)/rviz/slam.rviz" />
+</launch>
